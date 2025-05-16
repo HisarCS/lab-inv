@@ -1,0 +1,279 @@
+/* Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    color: #333333;
+    line-height: 1.6;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+header {
+    padding: 20px 0;
+    border-bottom: 1px solid #eeeeee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    font-weight: 300;
+    font-size: 2.5rem;
+    color: #000000;
+}
+
+/* Search */
+.search-container {
+    width: 40%;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.search-container input:focus {
+    outline: none;
+    border-color: #000000;
+}
+
+/* Tabs */
+.tabs {
+    margin: 20px 0;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-right: 10px;
+    opacity: 0.6;
+}
+
+.tab-button.active {
+    border-bottom: 2px solid #000000;
+    opacity: 1;
+    font-weight: 500;
+}
+
+.tab-button:hover {
+    opacity: 0.8;
+}
+
+/* Content sections */
+.content-section {
+    display: none;
+    padding: 20px 0;
+}
+
+.content-section.active {
+    display: block;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+th {
+    font-weight: 500;
+    color: #666666;
+}
+
+tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Buttons */
+button {
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #333333;
+}
+
+.add-button {
+    margin-bottom: 20px;
+}
+
+.action-button {
+    padding: 6px 12px;
+    margin-right: 5px;
+    font-size: 0.8rem;
+}
+
+.edit-button {
+    background-color: #4a4a4a;
+}
+
+.delete-button {
+    background-color: #222222;
+}
+
+/* Forms */
+.form-row {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666666;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #000000;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 50%;
+    max-width: 500px;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #000000;
+}
+
+.modal-title {
+    margin-bottom: 20px;
+    font-weight: 300;
+    font-size: 1.8rem;
+}
+
+/* Sedat button */
+.sedat-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #000000;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.sedat-button:hover {
+    opacity: 1;
+}
+
+/* Loading indicator */
+.loading {
+    text-align: center;
+    padding: 20px;
+    color: #666666;
+}
+
+/* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #999999;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .search-container {
+        width: 60%;
+    }
+    
+    .modal-content {
+        width: 80%;
+        margin: 20% auto;
+    }
+    
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .search-container {
+        width: 100%;
+        margin-top: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .tab-button {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    
+    th, td {
+        padding: 8px;
+    }
+    
+    .action-button {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+    }
+}
