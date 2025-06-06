@@ -1,0 +1,56 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "Plywood 2mm 900x600mm Sheet",
+      "location_id": 1,
+      "price": 11.15,
+      "modified": "2025-05-13T13:18:23.247771636+03:00"
+    },
+    {
+      "id": 2,
+      "name": "MDF 4mm 900x600mm Sheet",
+      "location_id": 1,
+      "price": 5.67,
+      "modified": "2025-05-13T13:18:23.247771694+03:00"
+    },
+    {
+      "id": 3,
+      "name": "Acrylic 5mm 900x600mm Sheet",
+      "location_id": 1,
+      "price": 19.34,
+      "modified": "2025-05-13T13:18:23.247771746+03:00"
+    },
+    {
+      "id": 4,
+      "name": "Wood Glue",
+      "location_id": 2,
+      "price": 9,
+      "modified": "2025-05-13T13:18:23.247771799+03:00"
+    },
+    {
+      "id": 5,
+      "name": "Resistor SMT 200",
+      "location_id": 3,
+      "price": 0.2,
+      "modified": "2025-05-13T13:18:23.247771859+03:00"
+    }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "name": "Storage Room",
+      "modified": "2025-05-13T13:18:23.247768256+03:00"
+    },
+    {
+      "id": 2,
+      "name": "Assembly Room",
+      "modified": "2025-05-13T13:18:23.247768336+03:00"
+    },
+    {
+      "id": 3,
+      "name": "Electronics",
+      "modified": "2025-05-13T13:18:23.247768391+03:00"
+    }
+  ]
+}

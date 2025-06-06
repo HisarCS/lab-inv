@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Inventory</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Status Indicator -->
+    <div class="status-indicator" id="db-status">Database Connected</div>
+
+    <div class="main-container">
+        <!-- Header -->
+        <div class="header-bar">
+            <div class="header-title">LAB INVENTORY</div>
+            <div class="header-controls">
+                <input type="text" class="search-box" id="search-input" placeholder="Search..." />
+                <button class="add-btn" id="add-item-button">ADD ITEM</button>
+                <button class="add-btn" id="add-location-button">ADD LOCATION</button>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-tabs">
+            <button class="tab active" data-tab="items">ITEMS</button>
+            <button class="tab" data-tab="locations">LOCATIONS</button>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Items Section -->
+            <div id="items-section" class="section active">
+                <div id="items-loading" class="loading-state" style="display: flex;">
+                    <div class="spinner"></div>
+                    <div>Loading inventory data...</div>
+                </div>
+                
+                <div id="items-empty" class="empty-state" style="display:none;">
+                    No items found
+                </div>
+                
+                <table id="items-table" class="data-table" style="display:none;">
+                    <thead>
+                        <tr>
+                            <th>ITEM NAME</th>
+                            <th>LOCATION</th>
+                            <th>NUMBER</th>
+                            <th>PRICE</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="items-list">
+                        <!-- Items populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Locations Section -->
+            <div id="locations-section" class="section">
+                <div id="locations-loading" class="loading-state" style="display: flex;">
+                    <div class="spinner"></div>
+                    <div>Loading location data...</div>
+                </div>
+                
+                <div id="locations-empty" class="empty-state" style="display:none;">
+                    No locations found
+                </div>
+                
+                <table id="locations-table" class="data-table" style="display:none;">
+                    <thead>
+                        <tr>
+                            <th>LOCATION NAME</th>
+                            <th>ITEM COUNT</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="locations-list">
+                        <!-- Locations populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Item Modal -->
+    <div id="add-item-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn">&times;</button>
+            <h2 class="modal-title">ADD NEW ITEM</h2>
+            <form id="add-item-form">
+                <div class="form-group">
+                    <label class="form-label">Item Name</label>
+                    <input type="text" class="form-input" id="item-name" placeholder="Enter item name" required />
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Location</label>
+                    <select class="form-select" id="item-location" required>
+                        <option value="">Select location</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Number (Quantity)</label>
+                    <input type="number" class="form-input" id="item-number" min="0" placeholder="0" required />
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Price ($)</label>
+                    <input type="number" class="form-input" id="item-price" step="0.01" min="0" placeholder="0.00" required />
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel close-modal">CANCEL</button>
+                    <button type="submit" class="btn-save">SAVE</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Location Modal -->
+    <div id="add-location-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn">&times;</button>
+            <h2 class="modal-title">ADD NEW LOCATION</h2>
+            <form id="add-location-form">
+                <div class="form-group">
+                    <label class="form-label">Location Name</label>
+                    <input type="text" class="form-input" id="location-name" placeholder="Enter location name" required />
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel close-modal">CANCEL</button>
+                    <button type="submit" class="btn-save">SAVE</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sedat Button -->
+    <button class="sedat-btn" id="sedat-button">SEDAT</button>
+
+    <script src="app.js"></script>
+    
+    <script>
+        // Tab functionality
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active from all tabs and sections
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+                
+                // Add active to clicked tab and corresponding section
+                this.classList.add('active');
+                document.getElementById(this.dataset.tab + '-section').classList.add('active');
+            });
+        });
+
+        // Modal functionality
+        document.getElementById('add-item-button').addEventListener('click', () => {
+            document.getElementById('add-item-modal').style.display = 'block';
+        });
+
+        document.getElementById('add-location-button').addEventListener('click', () => {
+            document.getElementById('add-location-modal').style.display = 'block';
+        });
+
+        // Close modal buttons
+        document.querySelectorAll('.close-btn, .close-modal').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.style.display = 'none';
+                });
+            });
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                e.target.style.display = 'none';
+            }
+        });
+
+        // Database status check
+        fetch('/api/items')
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('db-status').textContent = 'Database Connected';
+                    document.getElementById('db-status').classList.remove('error');
+                } else {
+                    throw new Error('Connection failed');
+                }
+            })
+            .catch(error => {
+                document.getElementById('db-status').textContent = 'Database Error';
+                document.getElementById('db-status').classList.add('error');
+            });
+    </script>
+</body>
+</html>
