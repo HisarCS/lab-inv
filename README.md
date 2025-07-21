@@ -1,1 +1,1 @@
-IdeLab Fablab's very own storage system
+IdeaLab Fablabs invetory management demo im go 
